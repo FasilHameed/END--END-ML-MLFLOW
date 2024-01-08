@@ -4,7 +4,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO,format="[%(asctime)s]: %(message)s:" )
 
-project_name="ML PROJECT"
+project_name="MLPROJECT"
 
 list_of_files=[
     ".github/workflows/.gitkeep",
@@ -24,9 +24,9 @@ list_of_files=[
     "main.py",
     "app.py",
     "Dockerfile",
-    "requirements.txt"
+    "requirements.txt",
     "setup.py"
-    "Research/trails.ipynb"
+    "Research/trails.ipynb",
     "templates/index.html"
 ]
 
