@@ -112,7 +112,7 @@ Execute requirements.txt it will triger setup.py as well
 
 Step  5
  
-Create Logging in Logging.py or utils where ever you want
+Create Logging in Logging.py or mlptoject __init__ below utils  where ever you want
 
 import os
 import sys
@@ -269,10 +269,64 @@ def get_size(path: Path) -> str:
 
 
 -  - - - - - - - - - - - - - - -
+# workflows
+
+1.update config.yaml
+2.update schema.yaml
+3.update params.yaml
+4.update the entity
+5.update configuration manager src config
+6. Update components configuration
+7. update pipeline
+8. update main.py
+9. update app.py
+
+
+- - - - - - -
 
 Step  7
+research 01_data_ingestion.ipynb for sample ingestion
+import os
+
+%pwd
+
+    
+    os.chdir("../")
+%pwd
+
+from dataclasses import dataclass
+from pathlib import Path 
+
+@dataclass(frozen=True)
+class DataIngestionConfig:
+    root_dir: Path
+    source_url:str
+    source_url: Path
+    unzip_dir: Path
+    
+    ||||
 
 
+update config.yaml for data ingestions 
+artifacts_root: artifacts
+
+
+data_ingestion:
+  root_dir: artifact/data_ingestion
+  source_url: https://github.com/entbappy/Branching-tutorial/raw/master/winequality-data.zip
+  local_data_file: artifact/data_ingestion/data.zip
+  unzip_dir: artifacts/data_ingestion
+
+UPDATE PATHS IN CONSTANTS CONSTRUCTOR
+from pathlib import Path
+
+CONFIG_FILE_PATH = Path("config/config.yaml")
+PARAMS_FILE_PATH = Path("params.yaml")
+SCHEMA_FILE_PATH = Path("schema.yaml")
+
+NOW IN 01_data_ingestion 
+IMPORT MLPROJECT.constants import *
+from MLPROJECT.utils.common import read_yaml,create_directories
 
 
 -  - - - - - - - - - - - - - - -

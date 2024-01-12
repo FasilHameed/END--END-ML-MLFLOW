@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from mlProject import logger
+from MLPROJECT import logger
 import json
 import joblib
 from ensure import ensure_annotations
@@ -9,31 +9,35 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 
-
-
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
-    """reads yaml file and returns
+    """Reads yaml file and returns ConfigBox type.
 
     Args:
-        path_to_yaml (str): path like input
+        path_to_yaml (Path): Path to the YAML file.
 
     Raises:
-        ValueError: if yaml file is empty
-        e: empty file
+        ValueError: If the YAML file is empty.
+        FileNotFoundError: If the file is not found.
 
     Returns:
-        ConfigBox: ConfigBox type
+        ConfigBox: ConfigBox type.
     """
     try:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
-            logger.info(f"yaml file: {path_to_yaml} loaded successfully")
+            if content is None:
+                raise ValueError("YAML file is empty")
+            logger.info(f"YAML file: {path_to_yaml} loaded successfully")
             return ConfigBox(content)
-    except BoxValueError:
-        raise ValueError("yaml file is empty")
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {path_to_yaml}")
     except Exception as e:
         raise e
+
+# Other functions remain unchanged.
+
+
     
 
 
